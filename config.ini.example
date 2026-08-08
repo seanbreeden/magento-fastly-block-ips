@@ -1,0 +1,30 @@
+# fastly-blocklist config
+#
+# Copy to ~/.config/fastly-blocklist/config.ini and chmod 600 -- it holds an API token.
+#   mkdir -p ~/.config/fastly-blocklist
+#   cp config.ini.example ~/.config/fastly-blocklist/config.ini
+#   chmod 600 ~/.config/fastly-blocklist/config.ini
+#
+# Pick a section with --env, e.g. `fastly-blocklist --env prod list`.
+# Anything in [defaults] applies to every section unless the section overrides it.
+
+[defaults]
+# One token that covers both services, or move api_token into each section.
+api_token = REPLACE_ME
+
+# ACL name. The fastly/fastly-magento2 module's Blocking feature uses "blocklist".
+# Run `fastly-blocklist acls` against your service to confirm before trusting this.
+acl_name = blocklist
+
+# Ranges the CLI refuses to block without --force. Put your office egress,
+# VPN exit, monitoring, and load balancer IPs here. This is the guardrail that
+# stops someone locking the business out of its own storefront.
+protected_ips =
+    198.51.100.0/24
+    203.0.113.10
+
+[prod]
+service_id = REPLACE_WITH_PROD_SERVICE_ID
+
+[staging]
+service_id = REPLACE_WITH_STAGING_SERVICE_ID
