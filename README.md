@@ -105,3 +105,7 @@ python3 -m unittest test_fastly_blocklist -v
 - `add 203.0.113.7/24` is normalized to `203.0.113.0/24`.
 - Blocking `203.0.113.0/24` does not make `remove 203.0.113.7` work. Removal matches the exact entry, the same way Fastly stores it.
 - `list` sorts numerically, so `.9` comes before `.100`.
+
+## License
+
+The Unlicense. Public domain, no conditions, no attribution required. Copy it, change it, ship it in something you sell. Just free code.
